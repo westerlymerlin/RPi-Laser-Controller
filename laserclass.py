@@ -78,7 +78,7 @@ class LaserClass:
             elif item == 'setlaserpower':
                 self.setpower(command)
                 return self.laserstatus()
-            elif item == 'laseralarrm':
+            elif item == 'laseralarm':
                 return self.alarmstatus()
             elif item == 'laserstatus':
                 return self.laserstatus()
