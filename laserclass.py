@@ -71,28 +71,30 @@ class LaserClass:
             if item == 'laser':
                 if command == 'on':
                     self.laser(1)
-                    return self.shortstatus()
+                    return self.laserstatus()
                 else:
                     self.laser(0)
-                    return self.shortstatus()
+                    return self.laserstatus()
             elif item == 'setlaserpower':
                 self.setpower(command)
-                return self.shortstatus()
-            elif item == 'laserstate':
-                return self.apistatus()
+                return self.laserstatus()
+            elif item == 'laseralarrm':
+                return self.alarmstatus()
+            elif item == 'laserstatus':
+                return self.laserstatus()
             elif item == 'setlasertimeout':
                 self.setmaxtimeout(command)
                 return {'maxtime': settings['laser']['maxtime']}
             else:
-                return self.shortstatus()
+                return self.laserstatus()
         except ValueError:
             print('incorrect json message')
-            return self.shortstatus()
+            return self.laserstatus()
 
-    def apistatus(self):
+    def alarmstatus(self):
         return {'laser': self.laserstate, 'power': settings['laser']['power'], 'status': self.getstatus()[14]}
 
-    def shortstatus(self):
+    def laserstatus(self):
         return {'laser': self.laserstate, 'power': settings['laser']['power']}
 
     def laser(self, state):
