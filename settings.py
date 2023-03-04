@@ -1,6 +1,6 @@
 import json
 
-version = '1.2'
+version = '1.2.1'
 settings = {}
 
 
