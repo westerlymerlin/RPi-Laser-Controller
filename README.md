@@ -19,4 +19,5 @@
 
 `{'setlasertimeout', nnn}` change the default maximum time the laser can fire to nnn seconda (default is 300)
 
+`{'restart', 'pi'}` Restart the rsapberry pi after a 15 second delay
 

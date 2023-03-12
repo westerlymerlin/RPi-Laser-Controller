@@ -1,6 +1,7 @@
 import serial
 from RPi import GPIO
 from time import sleep
+import os
 from settings import version, settings, writesettings
 from logmanager import *
 from threading import Timer
@@ -85,6 +86,12 @@ class LaserClass:
             elif item == 'setlasertimeout':
                 self.setmaxtimeout(command)
                 return {'maxtime': settings['laser']['maxtime']}
+            elif item == 'restart':
+                if command == 'pi':
+                    print('Restart command recieved: system will restart in 15 seconds')
+                    timerthread = Timer(15, self.reboot)
+                    timerthread.start()
+                    return self.laserstatus()
             else:
                 return self.laserstatus()
         except ValueError:
@@ -113,6 +120,10 @@ class LaserClass:
             print('Laser is off')
             self.laserstate = 0
             GPIO.output(16, 0)
+
+    def reboot(self):
+        print('System is restarting now')
+        os.system('sudo reboot')
 
 
 print("laser controller started")
