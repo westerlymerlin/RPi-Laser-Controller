@@ -1,38 +1,49 @@
 import json
+from datetime import datetime
 
-version = '1.3.0'
-settings = {}
+version = '2.0.0'
+
+
+def initialise():  # These are the default values written to the settings.json file the first time the app is run
+    isettings = {'LastSave': '01/01/2000 00:00:01',
+                 'logfilepath': './logs/lasercontrol.log',
+                 'logappname': 'LaserControler-Py',
+                 'gunicornpath': './logs/',
+                 'cputemp': '/sys/class/thermal/thermal_zone0/temp',
+                 'port': '/dev/ttyS0',
+                 'baud': 9600,
+                 'power': 30,
+                 'maxtime': 300}
+    return isettings
 
 
 def writesettings():
+    settings['LastSave'] = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
     with open('settings.json', 'w') as outfile:
-        json.dump(settings, outfile, indent=4, ensure_ascii=True, sort_keys=True)
-
-
-def initialise():
-    global settings
-    settings['logging'] = {}
-    settings['logging']['logfilepath'] = './logs/pumpreader.log'
-    settings['logging']['logappname'] = 'Pumpreader-Py'
-    settings['logging']['gunicornpath'] = './logs/'
-    settings['logging']['cputemp'] = '/sys/class/thermal/thermal_zone0/temp'
-    settings['logging']['syslog'] = '/var/log/syslog'
-    settings['laser'] = {}
-    settings['laser']['port'] = '/dev/ttyS0'
-    settings['laser']['baud'] = 9600
-    settings['laser']['power'] = 30
-    settings['laser']['maxtime'] = 300
-    with open('settings.json', 'w') as outfile:
-        json.dump(settings, outfile, indent=4, ensure_ascii=True, sort_keys=True)
-
+        json.dump(settings, outfile, indent=4, sort_keys=True)
 
 def readsettings():
-    global settings
     try:
         with open('settings.json') as json_file:
-            settings = json.load(json_file)
+            jsettings = json.load(json_file)
+            return jsettings
     except FileNotFoundError:
-        initialise()
+        print('File not found')
+        return {}
+
+def loadsettings():
+    global settings
+    settingschanged = 0
+    fsettings = readsettings()
+    for item in settings.keys():
+        try:
+            settings[item] = fsettings[item]
+        except KeyError:
+            print('settings[%s] Not found in json file using default' % item)
+            settingschanged = 1
+    if settingschanged == 1:
+        writesettings()
 
 
-readsettings()
+settings = initialise()
+loadsettings()

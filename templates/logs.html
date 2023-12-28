@@ -13,14 +13,14 @@
 		  <div >
               <P class="logo">London Geochronology Centre - Server Status &nbsp CPU {{cputemperature}}&deg;C</P>
               <p class="breadcrumbtext"><a href = "/" class="breadcrumblink">Return to index</a> &nbsp|&nbsp
-              <a href = "/pylog" class="breadcrumblink">Laser-Control Log</a> &nbsp|&nbsp
+              <a href = "/pylog" class="breadcrumblink">Application Log</a> &nbsp|&nbsp
               <a href = "/guaccesslog" class="breadcrumblink">Website Access Log</a> &nbsp|&nbsp
               <a href = "/guerrorlog" class="breadcrumblink">Website Error Log</a> &nbsp|&nbsp
-              <a href = {{ url_for('static',filename='systemhalt.html') }} class="breadcrumblink">Turn off the Raspberry Pi</a></p>
+              <a href = "/syslog" class="breadcrumblink">System Log</a></p><br>
           </div>
   </section>
 <section class="container2">
-    <p><b>{{log}}</b><br>
+    <p class="sectiontext">{{log}}<br>
         &nbsp</p>
 
         <p class="tabledataleft">
