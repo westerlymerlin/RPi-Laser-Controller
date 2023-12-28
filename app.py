@@ -37,7 +37,7 @@ def showplogs():
     f.close()
     log.reverse()
     logs = tuple(log)
-    return render_template('logs.html', rows=logs, log='Laser Controller log', cputemperature=cputemperature, version=version)
+    return render_template('logs.html', rows=logs, log='Laser Controller Log', cputemperature=cputemperature, version=version)
 
 
 @app.route('/guaccesslog')

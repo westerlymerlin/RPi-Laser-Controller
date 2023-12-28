@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-version = '2.0.0'
+version = '2.0.1'
 
 
 def initialise():  # These are the default values written to the settings.json file the first time the app is run
