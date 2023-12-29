@@ -15,9 +15,9 @@
 `{"laser": "on"}` Switch on the laser    
 `{"setlaserpower": nn.n}` set the laser power to nn.n%
 `{"laseralarm": 1}` Read the laser Alarm status
-`{"laserstatus": 1}` Read the laser status (returns pawer and if the laser is firing)
+`{"laserstatus": 1}` Read the laser status (returns power and if the laser is firing)
 
-`{"setlasertimeout": nnn}` change the default maximum time the laser can fire to nnn seconda (default is 300)
+`{"setlasertimeout": nnn}` change the default maximum time the laser can fire to nnn seconds (default is 300)
 
 `{"restart": "pi"}` Restart the rsapberry pi after a 15 second delay
 
