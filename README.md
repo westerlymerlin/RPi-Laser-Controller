@@ -2,6 +2,7 @@
 
 ### Python project to control a Laservall Laser and is controlled via an HTTP API
 
+Functional description and setup instructions are available in the file: [README.pdf](./README.pdf)
 
 
 `app.py`			    Flask application that manages the API 
