@@ -1,6 +1,7 @@
 """
 Laser Class - manages the laser via  TTL signal and serial connections
 """
+# pylint: disable=E1101
 import os
 from threading import Timer
 import serial  # From pyserial
