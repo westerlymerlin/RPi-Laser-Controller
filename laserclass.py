@@ -6,7 +6,7 @@ import os
 from threading import Timer
 import serial  # From pyserial
 from RPi import GPIO
-from settings import VERSION, settings, writesettings
+from settings import settings, writesettings
 from logmanager import logger
 
 
@@ -60,11 +60,11 @@ class LaserClass:
         lasermessage = bytearray(b'\xaa\x00\x02\x05\x00\x00\x00\x00\x00\x00\x00\x00\x10\x00\x00\x33')
         lasermessage[2] = int(laserpower / 10)
         lasermessage[3] = int(laserpower - (int(laserpower / 10) * 10))
-        logger.info('Laserclass Setting laser power to %s', settings['laser']['power'])
+        logger.info('Laserclass Setting laser power to %s', laserpower)
         try:
-            self.port.write(bytes(lasermessage))
             settings['power'] = laserpower
             writesettings()
+            self.port.write(bytes(lasermessage))
         except serial.serialutil.SerialException:
             logger.warning("Laserclass error writing to port %s", self.port.port)
 
@@ -143,5 +143,4 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.OUT)
 GPIO.output(16, 0)
 laser = LaserClass()
-logger.info('Running version %s', VERSION)
 logger.info("Laser controller ready")
