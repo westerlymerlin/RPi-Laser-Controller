@@ -6,7 +6,7 @@ import os
 from threading import Timer
 import serial  # From pyserial
 from RPi import GPIO
-from settings import settings, writesettings
+from app_control import settings, writesettings
 from logmanager import logger
 
 
@@ -121,6 +121,7 @@ class LaserClass:
             GPIO.output(16, 1)
             # Start a  timer for the laser, if the laser is not shutdown by PyMS then this timer will shut it down
             timerthread = Timer(settings['maxtime'], lambda: self.laser(2))
+            timerthread.name = 'laser-off-timer-thread'
             timerthread.start()
         elif state == 2:
             logger.info('Laser Auto shut off')

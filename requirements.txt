@@ -1,3 +1,4 @@
-Flask
-rpi.gpio
+flask
+rpi.lgpio
 pyserial
+gunicorn
