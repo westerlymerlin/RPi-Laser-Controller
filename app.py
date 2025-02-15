@@ -3,6 +3,7 @@ Main web page, provides API access and web page
 """
 
 import subprocess
+from threading import enumerate as enumerate_threads
 from flask import Flask, render_template, jsonify, request
 from laserclass import laser
 from app_control import settings, VERSION
@@ -12,11 +13,13 @@ app = Flask(__name__)
 logger.info('Starting Laser Controller web app version %s', VERSION)
 logger.info('Api-Key = %s', settings['api-key'])
 
+
 def read_cpu_temp(file_path):
     """Read CPU Temp"""
     with open(file_path, 'r', encoding='utf-8') as f:
         line = f.readline()
     return round(float(line) / 1000, 1)
+
 
 def read_reverse_file(file_path):
     """Read log file and reverse order"""
@@ -26,12 +29,20 @@ def read_reverse_file(file_path):
     return lines
 
 
+def threadlister():
+    """Get a list of all threads running"""
+    appthreads = []
+    for appthread in enumerate_threads():
+        appthreads.append([appthread.name, appthread.native_id])
+    return appthreads
+
+
 @app.route('/')
 def index():
     """Web status page """
     cputemperature = read_cpu_temp(settings['cputemp'])
     return render_template('index.html', laserstatus=laser.httpstatus(),
-                           cputemperature=cputemperature, version=VERSION)
+                           cputemperature=cputemperature, version=VERSION, threads=threadlister())
 
 
 @app.route('/api', methods=['POST'])
@@ -92,6 +103,7 @@ def showslogs():
     logs.reverse()
     return render_template('logs.html', rows=logs, log='System Log',
                            cputemperature=cputemperature, version=VERSION)
+
 
 if __name__ == '__main__':
     app.run()
