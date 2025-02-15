@@ -5,7 +5,7 @@ Main web page, provides API access and web page
 import subprocess
 from flask import Flask, render_template, jsonify, request
 from laserclass import laser
-from settings import settings, VERSION
+from app_control import settings, VERSION
 from logmanager import logger
 
 app = Flask(__name__)

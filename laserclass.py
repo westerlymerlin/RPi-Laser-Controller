@@ -6,7 +6,7 @@ import os
 from threading import Timer
 import serial  # From pyserial
 from RPi import GPIO
-from settings import settings, writesettings
+from app_control import settings, writesettings
 from logmanager import logger
 
 
@@ -31,6 +31,7 @@ class LaserClass:
         """Query the laser via the serial port and return the control register values"""
         lasermessage = bytearray(b'\x55\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x33')
         try:
+            self.port.reset_input_buffer()
             self.port.write(bytes(lasermessage))
             databack = list(self.port.read(size=100))
             logger.info('Data returned from Laser = %s', databack)
