@@ -1,5 +1,5 @@
 """
-Laser Class - manages the laser via  TTL signal and serial connections
+Laser Class - manages the laser via a TTL signal and serial connections
 """
 # pylint: disable=E1101
 import os
