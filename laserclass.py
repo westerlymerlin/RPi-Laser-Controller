@@ -17,7 +17,7 @@ class LaserClass:
         self.port.port = settings['port']
         self.port.baudrate = settings['baud']
         self.port.timeout = 0.5
-        self.laserbytes = ['readwrite', 'power x 10', 'power x 1', 'power x 0.1', 'time 1000', 'time 100', 'time 10',
+        self.laserbytes = ['readwrite', 'power % x 100', 'power % x 10', 'power % x 1', 'time 1000', 'time 100', 'time 10',
                            'time 1', 'time on 10', 'time on 1', 'time off 10', 'time off 1', 'cw mode', 'calibration',
                            'alarm', 'end']
         self.laserstate = 0
