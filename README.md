@@ -14,7 +14,7 @@ Functional description and setup instructions are available in the file: [README
 ### JSON Commands
 `{"laser": "off"}` Switch off the laser    
 `{"laser": "on"}` Switch on the laser    
-`{"setlaserpower": nn.n}` set the laser power to nn.n%
+`{"setlaserpower": nnn}` set the laser power to nnn% (Max 100%)
 `{"laseralarm": 1}` Read the laser Alarm status
 `{"laserstatus": 1}` Read the laser status (returns power and if the laser is firing)
 
