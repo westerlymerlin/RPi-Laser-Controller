@@ -59,8 +59,9 @@ class LaserClass:
     def setpower(self, laserpower):
         """Set the laser power via the serial connection"""
         lasermessage = bytearray(b'\xaa\x00\x02\x05\x00\x00\x00\x00\x00\x00\x00\x00\x10\x00\x00\x33')
-        lasermessage[2] = int(laserpower / 10)
-        lasermessage[3] = int(laserpower - (int(laserpower / 10) * 10))
+        lasermessage[1] = int(laserpower / 10)
+        lasermessage[2] = int(laserpower - (lasermessage[1] * 10))
+        lasermessage[3] = int(laserpower - ((lasermessage[1] * 10) + lasermessage[2]) * 10)
         logger.info('Laserclass Setting laser power to %s', laserpower)
         try:
             settings['power'] = laserpower

@@ -6,7 +6,7 @@ import random
 import json
 from datetime import datetime
 
-VERSION = '2.0.7'
+VERSION = '2.0.8'
 
 
 def initialise():
