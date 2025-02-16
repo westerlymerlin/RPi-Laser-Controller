@@ -62,6 +62,7 @@ class LaserClass:
         lasermessage[2] = int(laserpower / 10)
         lasermessage[3] = int(laserpower - (int(laserpower / 10) * 10))
         logger.info('Laserclass Setting laser power to %s', laserpower)
+        logger.info('Laserclass Sending laser message %s', lasermessage)
         try:
             settings['power'] = laserpower
             writesettings()
