@@ -4,12 +4,15 @@
 
 Functional description and setup instructions are available in the file: [README.pdf](./README.pdf)
 
+Python module documentation can be found in the folder: [docs](./docs/readme.md)
+
+Change log can be found in the file [changelog.txt](./changelog.txt)
 
 `app.py`			    Flask application that manages the API 
 
 ----------------------------------------------------
 
-`laserclass.py`	  read and write to the RS232 port of the laser and activates the laser vis a TTL line from GPIO 16
+`laserclass.py`	  read and write to the RS232 port of the laser and activates the laser via a TTL line from GPIO 16
 
 ### JSON Commands
 `{"laser": "off"}` Switch off the laser    

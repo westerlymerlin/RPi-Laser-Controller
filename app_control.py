@@ -12,6 +12,7 @@ VERSION = '2.1.0'
 def initialise():
     """These are the default values written to the settings.json file the first time the app is run"""
     isettings = {'LastSave': '01/01/2000 00:00:01',
+                 'app-name': 'UCL Helium Line Laser Controller',
                  'api-key': 'change-me',
                  'logfilepath': './logs/lasercontrol.log',
                  'logappname': 'LaserControler-Py',
