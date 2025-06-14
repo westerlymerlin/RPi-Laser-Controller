@@ -1,5 +1,20 @@
 """
-Main web page, provides API access and web page
+Laser Controller Web Application
+
+This Flask application provides a web interface and REST API for controlling
+laser hardware. It includes status monitoring, temperature readings, and
+log viewing capabilities.
+
+Routes:
+    / - Main status page showing laser status and system information
+    /api - REST API endpoint for laser control (requires API key authentication)
+    /pylog - Application log viewer
+    /guaccesslog - Gunicorn access log viewer
+    /guerrorlog - Gunicorn error log viewer
+    /syslog - System log viewer (last 200 entries)
+
+The application uses settings from app_control module and interfaces with
+laser hardware through the laserclass module.
 """
 
 import subprocess
