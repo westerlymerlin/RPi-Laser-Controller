@@ -1,32 +1,25 @@
-# Contents for: app
-
-* [app](#app)
-  * [subprocess](#app.subprocess)
-  * [enumerate\_threads](#app.enumerate_threads)
-  * [Flask](#app.Flask)
-  * [render\_template](#app.render_template)
-  * [jsonify](#app.jsonify)
-  * [request](#app.request)
-  * [laser](#app.laser)
-  * [settings](#app.settings)
-  * [VERSION](#app.VERSION)
-  * [logger](#app.logger)
-  * [app](#app.app)
-  * [read\_cpu\_temp](#app.read_cpu_temp)
-  * [read\_reverse\_file](#app.read_reverse_file)
-  * [threadlister](#app.threadlister)
-  * [index](#app.index)
-  * [api](#app.api)
-  * [showplogs](#app.showplogs)
-  * [showgalogs](#app.showgalogs)
-  * [showgelogs](#app.showgelogs)
-  * [showslogs](#app.showslogs)
+# None
 
 <a id="app"></a>
 
 # app
 
-Main web page, provides API access and web page
+Laser Controller Web Application
+
+This Flask application provides a web interface and REST API for controlling
+laser hardware. It includes status monitoring, temperature readings, and
+log viewing capabilities.
+
+Routes:
+    / - Main status page showing laser status and system information
+    /api - REST API endpoint for laser control (requires API key authentication)
+    /pylog - Application log viewer
+    /guaccesslog - Gunicorn access log viewer
+    /guerrorlog - Gunicorn error log viewer
+    /syslog - System log viewer (last 200 entries)
+
+The application uses settings from app_control module and interfaces with
+laser hardware through the laserclass module.
 
 <a id="app.subprocess"></a>
 
