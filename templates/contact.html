@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{settings['app-name']}} - {% if formname =='support' %}Support{% else %}Contact{% endif %}</title>
+    <link href="{{ url_for('static',filename='css/text.css') }}" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <script src="{{ url_for('static', filename='script/common.js') }}"></script>
+</head>
+    <body>
+        <nav class="banner sticky-top">
+            <table class="full-width-table">
+                    <tr class="logobgtable">
+                        <td>&nbsp <a href="/"><img height=27 src="{{ url_for('static', filename='images/TSTLogoblue.png') }}" alt="TS Technologies Logo"></a></td>
+                    </tr>
+            </table>
+            <p class="logo full-width-table">{{settings['app-name']}} - {% if formname =='support' %}Log a support ticket{% else %}Contact Us{% endif %}</p>
+            <div class="bannertext">
+
+                <p class="breadcrumbtext">
+                    <a href="/" class="breadcrumblink">Return to index</a> &nbsp;|&nbsp;
+                    <a href="/pylog" class="breadcrumblink">Application Log</a> &nbsp;|&nbsp;
+                    <a href="/guaccesslog" class="breadcrumblink">Webserver Access Log</a> &nbsp;|&nbsp;
+                    <a href="/guerrorlog" class="breadcrumblink">Webserver Error Log</a> &nbsp;|&nbsp;
+                    <a href="/syslog" class="breadcrumblink">System Log</a>
+                </p>
+            </div>
+        </nav>
+
+        <section class="container2">
+            <form action="/contactresponse" method="post" class="contact-form">
+                <input type="hidden" name="formname" value='{{formname}}'>
+                {% if formname =='support' %}
+                    <div class="form-group">
+                        <p class="sectiontext">Support Ticket ID: <strong>{{ticket}}</strong></p>
+                        <input type="hidden" name="ticket" value='{{ticket}}'>
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="name">Name<sup>*</sup>:</label>
+                    <input type="text" required id="name" name="name" required placeholder="Your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address<sup>*</sup>:</label>
+                    <input type="email" minlength="8" required id="email" name="email" required placeholder="email@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="telephone">Telephone:</label>
+                    <input type="tel" id="telephone" name="telephone" placeholder="e.g. +44 1234 567890">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Your address">
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <textarea class="preserveTextareaLineBreaks" id="comments" name="comments" rows="5" {% if formname =='support' %}placeholder="Please describe the issue you are facing or your support request, please add as much detail or paste in any logs you see fit?"{& else %}placeholder="How can we help you?"{% endif %}></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-button">Send Message</button>
+                </div>
+            </form>
+        </section>
+        <section class="banner">
+            <div class="row banner breadcrumbtext">
+                <div class="column col-left">
+                    <p class="bannertext">
+                        TS Technologies
+                    </p>
+                    <p>
+                        Advancing science through precision control and laboratory automation.<br>
+                        Software Version {{version}}
+                    </p>
+                </div>
+                <div class="column col-middle">
+                    <p class="bannertext-bold">Quick Links</p>
+                    <ul>
+                        <li><a href="/support" class="breadcrumblink">Support Portal</a></li>
+                        <li><a href="/pp" class="breadcrumblink">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="column col-right" id="contact">
+                    <p class="bannertext-bold">Contact Us</p>
+                    <ul>
+                        <li>35 Mill Lane, Broomfield, Essex, UK</li>
+                        <li><a href="/contactform" class="breadcrumblink">Contact Form</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row banner">
+                <div class="column col-left">
+                    <p class="copyright">&copy; {{year}} TS Technologies. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

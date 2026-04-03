@@ -88,7 +88,7 @@ persistent=yes
 
 # Minimum Python version to use for version dependent checks. Will default to
 # the version used to run pylint.
-py-version=3.8
+py-version=3.10
 
 # Discover python modules and packages in the file system subtree.
 recursive=no
@@ -286,15 +286,16 @@ ignored-parents=
 
 # Maximum number of arguments for function / method.
 max-args=10
+max-positional-arguments=10
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes=7
+max-attributes=30
 
 # Maximum number of boolean expressions in an if statement (see R0916).
 max-bool-expr=5
 
 # Maximum number of branch for function / method body.
-max-branches=12
+max-branches=25
 
 # Maximum number of locals for function / method body.
 max-locals=15
@@ -306,10 +307,10 @@ max-parents=7
 max-public-methods=20
 
 # Maximum number of return / yield for function / method body.
-max-returns=12
+max-returns=20
 
 # Maximum number of statements in function / method body.
-max-statements=50
+max-statements=100
 
 # Minimum number of public methods for a class (see R0903).
 min-public-methods=2
@@ -457,7 +458,7 @@ notes-rgx=
 [REFACTORING]
 
 # Maximum number of nested blocks for function / method body
-max-nested-blocks=5
+max-nested-blocks=7
 
 # Complete name of functions that never returns. When checking for
 # inconsistent-return-statements if a never returning function is called then

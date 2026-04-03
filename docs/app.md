@@ -29,6 +29,14 @@ laser hardware through the laserclass module.
 
 ## enumerate\_threads
 
+<a id="app.datetime"></a>
+
+## datetime
+
+<a id="app.uuid"></a>
+
+## uuid
+
 <a id="app.Flask"></a>
 
 ## Flask
@@ -45,6 +53,14 @@ laser hardware through the laserclass module.
 
 ## request
 
+<a id="app.send_from_directory"></a>
+
+## send\_from\_directory
+
+<a id="app.send_file"></a>
+
+## send\_file
+
 <a id="app.laser"></a>
 
 ## laser
@@ -57,23 +73,45 @@ laser hardware through the laserclass module.
 
 ## VERSION
 
+<a id="app.SECRETS"></a>
+
+## SECRETS
+
 <a id="app.logger"></a>
 
 ## logger
+
+<a id="app.send_email_via_graph"></a>
+
+## send\_email\_via\_graph
 
 <a id="app.app"></a>
 
 #### app
 
-<a id="app.read_cpu_temp"></a>
+<a id="app.YEAR"></a>
 
-#### read\_cpu\_temp
+#### YEAR
+
+<a id="app.read_cpu_temperature"></a>
+
+#### read\_cpu\_temperature
 
 ```python
-def read_cpu_temp(file_path)
+def read_cpu_temperature()
 ```
 
-Read CPU Temp
+Read the CPU temperature and returns in Celsius
+
+<a id="app.read_log_from_file"></a>
+
+#### read\_log\_from\_file
+
+```python
+def read_log_from_file(file_path)
+```
+
+Read a log from a file and reverse the order of the lines so newest is at the top
 
 <a id="app.read_reverse_file"></a>
 
@@ -95,6 +133,20 @@ def threadlister()
 
 Get a list of all threads running
 
+<a id="app.internal_server_error"></a>
+
+#### internal\_server\_error
+
+```python
+@app.errorhandler(500)
+def internal_server_error(_)
+```
+
+Handles the 500 Internal Server Error by serving a custom static HTML error page.
+
+This function is triggered when a 500 Internal Server Error occurs in the
+application and serves a pre-defined static HTML file designed for error handling.
+
 <a id="app.index"></a>
 
 #### index
@@ -105,6 +157,17 @@ def index()
 ```
 
 Web status page
+
+<a id="app.statusdata"></a>
+
+#### statusdata
+
+```python
+@app.route('/statusdata', methods=['GET'])
+def statusdata()
+```
+
+Status data read by javascript on default website so the page shows near live values
 
 <a id="app.api"></a>
 
@@ -126,7 +189,7 @@ API endpoint
 def showplogs()
 ```
 
-Show apoplication log
+Show the Application log web page
 
 <a id="app.showgalogs"></a>
 
@@ -137,7 +200,7 @@ Show apoplication log
 def showgalogs()
 ```
 
-Gunicorn access log page
+"Show the Gunicorn Access Log web page
 
 <a id="app.showgelogs"></a>
 
@@ -148,7 +211,7 @@ Gunicorn access log page
 def showgelogs()
 ```
 
-Gunicorn error log page
+"Show the Gunicorn Errors Log web page
 
 <a id="app.showslogs"></a>
 
@@ -159,5 +222,64 @@ Gunicorn error log page
 def showslogs()
 ```
 
-System log page - shows 200 most recent messages
+Show the last 2000 lines from the system log on a web page
+
+<a id="app.download_manual"></a>
+
+#### download\_manual
+
+```python
+@app.route('/documentation')
+def download_manual()
+```
+
+Handles the request to download the application's manual.
+
+This function serves the PDF manual of the application as a downloadable
+attachment. The manual file's name is retrieved from the application
+settings and provided as the download name.
+
+<a id="app.privacy_policy"></a>
+
+#### privacy\_policy
+
+```python
+@app.route('/pp')
+def privacy_policy()
+```
+
+Show the privacy policy page
+
+<a id="app.contact_us"></a>
+
+#### contact\_us
+
+```python
+@app.route('/contactform')
+def contact_us()
+```
+
+Handles the HTTP request for the contact form page.
+
+<a id="app.support_ticket"></a>
+
+#### support\_ticket
+
+```python
+@app.route('/support')
+def support_ticket()
+```
+
+Handles the HTTP request for the support form page.
+
+<a id="app.contact_reply"></a>
+
+#### contact\_reply
+
+```python
+@app.route('/contactresponse', methods=['POST'])
+def contact_reply()
+```
+
+Reply page on sucecssful submission of contact form.
 
