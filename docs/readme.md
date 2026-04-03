@@ -30,6 +30,17 @@ laser hardware through the laserclass module.
 Settings module, reads the settings from a settings.json file. If it does not exist or a new setting
 has appeared it will creat from the defaults in the initialise function.
 
+[contact_message](./contact_message.md)  
+Provides functionality to send emails using the Microsoft Graph API.
+
+This module defines a function that sends an email through the Microsoft Graph API by authenticating
+via Microsoft Authentication Library (MSAL). It uses OAuth2-based client authentication and constructs
+an email payload dynamically based on input data. The email can include sender, recipient, subject, and
+message body details. Logs and errors are appropriately recorded.
+
+Functions:
+    - send_email_via_graph: Sends an email using Microsoft Graph API with the provided payload.
+
 [laserclass](./laserclass.md)  
 Laser Control Module - Manages laser hardware via TTL signals and serial communication
 
@@ -76,7 +87,7 @@ write to the log.
 
   
 -------
-#### Copyright (C) 2025 Gary Twinn  
+#### Copyright (C) 2026 Gary Twinn  
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
