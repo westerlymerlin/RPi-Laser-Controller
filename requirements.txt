@@ -1,4 +1,5 @@
 flask
-rpi.lgpio
+rpi-lgpio
 pyserial
 gunicorn
+msal
