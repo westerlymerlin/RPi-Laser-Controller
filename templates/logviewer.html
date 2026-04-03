@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{settings['app-name']}}</title>
+        <title>{{settings['app-name']}} logs</title>
         <link href="{{ url_for('static',filename='css/text.css') }}" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
         <script src="{{ url_for('static', filename='script/common.js') }}"></script>
@@ -20,7 +20,6 @@
                 idtoupdate.innerHTML = statusdata.cputemperature;
             }
         </script>
-
         <nav class="banner sticky-top">
             <table class="full-width-table">
                     <tr class="logobgtable">
@@ -38,31 +37,15 @@
                 </p>
             </div>
         </nav>
-
         <section class="container2">
-             <p class="sectiontext"> Laser Status</p>
-        <table>
-         <thead>
-            <td class="tabledataleft"><B>Laser Setting</B></td>
-            <td class="tabledataleft"><B>Value</B></td>
-         </thead>
-         {% for key in laserstatus %}
-            <tr>
-                <td class="tabledataleft">{{key[0]}}</td>
-                <td class="tabledataleft">{{key[1]}}</td>
-            </tr>
-         {% endfor %}
-         {% for thread in threads %}
-                <tr>
-                    <td class="tabledataleft">{{thread[0]}}</td>
-                    <td class="tabledataleft">{{thread[1]}}</td>
-                </tr>
-         {% endfor %}
-      </table>
-    <p>&nbsp</p>
+            <p class="sectiontext">{{log}}</p>
+            <p class="tabledatalogs">
+                {% for row in rows %}
+                    <slot {% if 'ERROR' in row %} class="logerror" {% elif 'WARN' in row %} class="logwarning" {% else %} class="loginfo" {% endif %}>{{row}}</slot><br>
+                {% endfor %}
+                &nbsp
+            </p>
         </section>
-
-
         <section class="banner">
             <div class="row banner breadcrumbtext">
                 <div class="column col-left">
