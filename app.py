@@ -156,7 +156,7 @@ def download_manual():
     attachment. The manual file's name is retrieved from the application
     settings and provided as the download name.
     """
-    return send_file('manual.pdf', download_name='%s.pdf' % settings['app-name'], as_attachment=True)
+    return send_file('README.pdf', download_name='%s.pdf' % settings['app-name'], as_attachment=True)
 
 
 @app.route('/pp')
